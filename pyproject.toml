@@ -11,11 +11,11 @@ authors = [
 ]
 description = "EchoPrime: Deterministic safe prime oracle and cryptographic primitive"
 readme = "README.md"
-license = { text = "MIT" }
+license = { text = "Apache-2.0" }
 requires-python = ">=3.8"
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "License :: OSI Approved :: Apache License 2.0",
     "Operating System :: OS Independent",
     "Topic :: Security :: Cryptography",
 ]
