@@ -1,6 +1,6 @@
 # EchoPrime 🔐
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/DarrenEdwards111/echoprime)
 
@@ -185,14 +185,33 @@ echoprime/
 5. Push to the branch (`git push origin feature/amazing-feature`)
 6. Open a Pull Request
 
+## About Mikoshi Ltd
+
+EchoPrime is built by **[Mikoshi Ltd](https://mikoshi.co.uk)** — a UK fintech and cryptographic infrastructure company based in Swansea, Wales.
+
+Mikoshi builds tools at the intersection of finance, AI, and cryptography:
+
+- **[Mikoshi Invest](https://mikoshi.co.uk)** — Investment intelligence platform with AI analysis, ML forecasting, and real-time market signals
+- **EchoPrime** — Deterministic safe prime oracle for Web3 and cryptographic infrastructure
+- **Mikoshi AI** — AI companion and intelligence products
+
+Mikoshi's mission is to make sophisticated financial and cryptographic tools accessible to everyone — not just Wall Street.
+
+📧 **Contact:** mikoshiuk@gmail.com
+🌐 **Website:** [mikoshi.co.uk](https://mikoshi.co.uk)
+🔬 **EchoPrime Labs:** [echoprime.xyz](https://echoprime.xyz)
+
 ## License
 
-This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.
+Licensed under the Apache License, Version 2.0 — see the [LICENSE](LICENSE) file for details.
 
 ## Author
 
-**Darren J. Edwards** — [Mikoshi Ltd.](https://github.com/DarrenEdwards111)
+**Darren J. Edwards, Ph.D.**
+Founder & CEO, Mikoshi Ltd
+[GitHub](https://github.com/DarrenEdwards111) · [mikoshi.co.uk](https://mikoshi.co.uk)
 
 ---
 
-*EchoPrime: Where number theory meets deterministic oracle design.*
+*EchoPrime: Deterministic cryptographic infrastructure for the future of Web3.*
+*© 2025 Mikoshi Ltd. All rights reserved.*
