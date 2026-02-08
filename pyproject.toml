@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "echoprime"
+version = "1.0.0"
+authors = [
+  { name="Darren J. Edwards", email="mikoshiuk@gmail.com" },
+  { name="Mikoshi Ltd." },
+]
+description = "EchoPrime: Deterministic safe prime oracle and cryptographic primitive"
+readme = "README.md"
+license = { text = "MIT" }
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Security :: Cryptography",
+]
+dependencies = [
+    "sympy>=1.12",
+]
+
+[project.urls]
+Homepage = "https://github.com/DarrenEdwards111/echoprime"
+Documentation = "https://docs.echoprime.xyz"
+Issues = "https://github.com/DarrenEdwards111/echoprime/issues"
+
+[tool.setuptools.packages.find]
+where = ["src"]
