@@ -34,6 +34,7 @@ def verify_safe_prime(p, window=DEFAULT_WINDOW, threshold=DEFAULT_THRESHOLD):
             'score_q': 0.0,
             'symbolic_pass': False,
             'fallback_ok': False,
+            'verified': False,
             'reason': 'Invalid candidate (too small or even)'
         }
     
