@@ -1,8 +1,8 @@
 # EchoPrime 🔐
 
+[![PyPI](https://img.shields.io/pypi/v/echoprime.svg)](https://pypi.org/project/echoprime/)
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/DarrenEdwards111/echoprime)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18529723.svg)](https://doi.org/10.5281/zenodo.18529723)
 
 **Deterministic safe prime oracle and cryptographic primitive.**
