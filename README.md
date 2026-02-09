@@ -19,6 +19,8 @@ EchoPrime provides a deterministic method for estimating, locating, and verifyin
 
 ## Installation
 
+📦 **PyPI:** https://pypi.org/project/echoprime/
+
 ```bash
 pip install echoprime
 ```
