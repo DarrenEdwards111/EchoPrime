@@ -157,7 +157,7 @@ python -m pytest tests/ -v
 echoprime/
 ├── pyproject.toml          # Package configuration
 ├── README.md               # This file
-├── LICENSE                  # MIT License
+├── LICENSE                  # Apache 2.0 License
 ├── setup.py                # Backwards compatibility
 ├── src/
 │   └── echoprime/
@@ -166,6 +166,17 @@ echoprime/
 │       ├── verifier.py     # Symbolic collapse score verifier
 │       ├── oracle.py       # On-chain oracle trace format
 │       └── utils.py        # Utilities and known primes
+├── contracts/
+│   ├── src/
+│   │   ├── EchoPrimeOracle.sol   # Solidity oracle contract
+│   │   └── IEchoPrimeOracle.sol  # Contract interface
+│   ├── test/                     # 20 Hardhat tests
+│   ├── scripts/                  # Deploy + submit scripts
+│   ├── hardhat.config.js
+│   └── README.md                 # Contract docs
+├── whitepaper/
+│   ├── echoprime-whitepaper.tex  # LaTeX source
+│   └── echoprime-whitepaper.pdf  # Compiled PDF
 ├── tests/
 │   ├── test_estimator.py   # Estimator tests
 │   ├── test_verifier.py    # Verifier tests
@@ -176,6 +187,41 @@ echoprime/
 └── benchmarks/
     └── million_run.py      # 1M candidate benchmark
 ```
+
+## Smart Contracts
+
+EchoPrime includes an Ethereum-compatible smart contract (`EchoPrimeOracle.sol`) that serves as a public, on-chain registry for verified safe primes.
+
+### Features
+- **Submit** — Publish a verified safe prime with its index, collapse scores, and primality verdict
+- **Batch submit** — Submit up to 100 primes in a single transaction
+- **Query** — Retrieve any published prime by its deterministic index
+- **Access control** — Owner can authorize oracle bots as submitters
+- **Events** — Every submission emits a `PrimeVerified` event for off-chain indexing
+
+### Quick Start
+
+```bash
+cd contracts
+npm install
+npx hardhat compile
+npx hardhat test          # 20 tests
+npx hardhat run scripts/deploy.js --network sepolia
+```
+
+### Contract API
+
+| Function | Description |
+|---|---|
+| `submitVerification(index, p, scoreP, scoreQ, verified)` | Submit a verified safe prime |
+| `batchSubmit(indices[], primes[], scoresP[], scoresQ[], verifieds[])` | Batch submit (max 100) |
+| `getPrime(index)` | Query a prime record by index |
+| `isPrimeSubmitted(index)` | Check if an index has been submitted |
+| `totalSubmissions` | Total number of published primes |
+| `addSubmitter(address)` | Authorize an oracle bot (owner only) |
+| `removeSubmitter(address)` | Revoke authorization (owner only) |
+
+See [`contracts/README.md`](contracts/README.md) for full deployment guide and environment setup.
 
 ## Contributing
 
