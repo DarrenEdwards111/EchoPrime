@@ -27,7 +27,7 @@ This paper describes the estimator design, the structural verification mechanism
 
 \section{Introduction}
 
-Safe primes $p$ such that $q = \frac{p - 1}{2}$ is also prime are foundational to many cryptographic protocols, including zero-knowledge proofs, multiparty computation, secure key exchange, and digital signature schemes. Traditional safe prime generation relies on entropy-heavy random sampling followed by probabilistic primality testing. These methods produce correct results but are non-deterministic: given the same inputs, they yield different outputs, and there is no intrinsic record of \emph{why} a particular prime was chosen.
+Safe primes $p$ such that $q = \frac{p - 1}{2}$ is also prime are foundational to many cryptographic protocols, including zero-knowledge proofs \cite{bensasson2014}, multiparty computation \cite{gennaro2003}, secure key exchange \cite{diffie1976}, and digital signature schemes \cite{rivest1978}. Traditional safe prime generation relies on entropy-heavy random sampling followed by probabilistic primality testing. These methods produce correct results but are non-deterministic: given the same inputs, they yield different outputs, and there is no intrinsic record of \emph{why} a particular prime was chosen.
 
 EchoPrime addresses this by introducing a public, Ethereum-compatible oracle for the verifiable publication of safe primes. Rather than relying on random sampling, EchoPrime projects candidate primes from a deterministic estimator function, evaluates them using a structural verification layer, confirms primality, and records the full trace on-chain. Every published prime is deterministically reproducible from its index, accompanied by a numeric verification score, and permanently anchored in an auditable smart contract registry.
 
@@ -48,7 +48,7 @@ The EchoPrime estimator is a closed-form function that maps a natural number ind
 
 \subsection{Asymptotic Context}
 
-The prime counting function satisfies $\pi(x) \sim x / \ln x$, and the density of safe primes follows $\pi_{\text{safe}}(x) \sim C \cdot x / \ln^2 x$, where $C$ is the Hardy--Littlewood twin prime-like constant for safe primes. The quadratic logarithmic denominator reflects the requirement that both $p$ and $q = (p-1)/2$ must be prime.
+The prime counting function satisfies $\pi(x) \sim x / \ln x$, and the density of safe primes follows $\pi_{\text{safe}}(x) \sim C \cdot x / \ln^2 x$, where $C$ is the Hardy--Littlewood twin prime-like constant for safe primes \cite{hardy1923}. The quadratic logarithmic denominator reflects the requirement that both $p$ and $q = (p-1)/2$ must be prime.
 
 \subsection{Projection Formula}
 
@@ -56,7 +56,7 @@ The estimator computes a candidate from index $n$ as:
 \[
 \hat{p}(n) = 2 \cdot \left\lfloor \alpha \cdot n \cdot \ln^2(n + 2) \right\rfloor + 1
 \]
-where $\alpha$ is an empirically calibrated constant that adjusts the projection density. The $\ln^2$ factor compensates for the quadratic thinning of safe primes, and the floor-and-odd construction ensures each candidate is odd. The corresponding Sophie Germain candidate is $\hat{q} = (\hat{p} - 1) / 2$.
+where $\alpha$ is an empirically calibrated constant that adjusts the projection density, derived from the Bateman--Horn conjecture \cite{bateman1962}. The $\ln^2$ factor compensates for the quadratic thinning of safe primes, and the floor-and-odd construction ensures each candidate is odd. The corresponding Sophie Germain candidate is $\hat{q} = (\hat{p} - 1) / 2$.
 
 This formula is fully deterministic: the same index always produces the same candidate. There is no randomness, no entropy source, and no dependence on system state. Any party with the formula and the constant $\alpha$ can independently reproduce every candidate.
 
@@ -76,7 +76,7 @@ Each candidate produced by the estimator is evaluated using a structural verific
 
 \subsection{Mathematical Basis}
 
-The scoring mechanism is based on a well-known consequence of Lucas' theorem: for any prime $p$ and integer $k$ with $1 \leq k \leq T$ (where $T$ is a fixed window size, typically $T = 128$), the binomial coefficient $\binom{p}{k}$ is divisible by $p$. Equivalently, $\binom{p}{k} \equiv 0 \pmod{p}$ for all $1 \leq k \leq p - 1$.
+The scoring mechanism is based on a well-known consequence of Lucas' theorem \cite{lucas1878}: for any prime $p$ and integer $k$ with $1 \leq k \leq T$ (where $T$ is a fixed window size, typically $T = 128$), the binomial coefficient $\binom{p}{k}$ is divisible by $p$. Equivalently, $\binom{p}{k} \equiv 0 \pmod{p}$ for all $1 \leq k \leq p - 1$.
 
 For composite numbers, this property generally fails for at least some values of $k$ within the window. The collapse score measures the fraction of the window over which the divisibility property holds:
 \[
@@ -95,7 +95,7 @@ The collapse score serves several purposes within EchoPrime:
     \item \textbf{On-chain metadata.} The score is published alongside the prime in the oracle contract, providing queryable structural metadata for downstream consumers.
 \end{itemize}
 
-After scoring, candidates undergo standard deterministic primality testing as a final confirmation. Both $p$ and $q = (p-1)/2$ must pass primality testing to be published. The collapse score and primality verdict together form the complete verification trace.
+After scoring, candidates undergo standard deterministic primality testing \cite{miller1976, rabin1980} as a final confirmation. Both $p$ and $q = (p-1)/2$ must pass primality testing to be published. The collapse score and primality verdict together form the complete verification trace.
 
 \section{Million-Scale Validation}
 
@@ -193,7 +193,7 @@ This enables on-chain and off-chain systems to retrieve verified primes and thei
 Standard safe prime generation follows a probabilistic process:
 \begin{enumerate}
     \item Sample a random odd integer $q$
-    \item Test if $q$ is prime (typically Miller--Rabin)
+    \item Test if $q$ is prime (typically Miller--Rabin \cite{miller1976, rabin1980})
     \item Compute $p = 2q + 1$
     \item Test if $p$ is prime
     \item Repeat until success
@@ -226,7 +226,7 @@ EchoPrime is not a replacement for standard primality testing algorithms or gene
 
 \subsection{Trusted Setup Ceremonies}
 
-Zero-knowledge proving systems (zkSNARKs, PLONK variants) require trusted setup ceremonies where cryptographic parameters must be generated transparently. EchoPrime allows ceremony coordinators to derive parameters from publicly auditable, collapse-verified primes:
+Zero-knowledge proving systems \cite{bensasson2014} (zkSNARKs, PLONK variants) require trusted setup ceremonies where cryptographic parameters must be generated transparently. EchoPrime allows ceremony coordinators to derive parameters from publicly auditable, collapse-verified primes:
 \[
 \texttt{curveSeed} \leftarrow \texttt{hash}(p \,\|\, \texttt{scoreP} \,\|\, \texttt{index})
 \]
@@ -234,7 +234,7 @@ This eliminates reliance on opaque entropy sources during setup and enables any 
 
 \subsection{MPC Group Parameters}
 
-Multiparty computation protocols require agreement on group parameters, typically safe primes for the group modulus. EchoPrime provides pre-verified, publicly registered safe primes that all parties can independently confirm:
+Multiparty computation protocols \cite{gennaro2003} require agreement on group parameters, typically safe primes for the group modulus. EchoPrime provides pre-verified, publicly registered safe primes that all parties can independently confirm:
 \[
 g \in \mathbb{Z}_p^*, \quad p \in \texttt{EchoPrime registry}
 \]
@@ -242,7 +242,7 @@ This avoids disputes over parameter sourcing in threshold cryptography, distribu
 
 \subsection{Diffie--Hellman and RSA Parameters}
 
-Safe primes are directly used in Diffie--Hellman key exchange (as the group modulus) and in RSA key generation (as prime factors of $N = pq$). EchoPrime provides a transparent source of such primes with verifiable provenance, suitable for applications where parameter auditability is required.
+Safe primes are directly used in Diffie--Hellman key exchange \cite{diffie1976} (as the group modulus) and in RSA key generation \cite{rivest1978} (as prime factors of $N = pq$). EchoPrime provides a transparent source of such primes with verifiable provenance, suitable for applications where parameter auditability is required.
 
 \subsection{ZK Rollup Infrastructure}
 
@@ -296,5 +296,60 @@ The system does not claim to replace established cryptographic libraries or prim
 Empirical validation across 1,000,000 candidates confirms a $7.6\%$--$9.7\%$ safe prime hit rate (approximately $33$--$42\times$ more efficient than random sampling at the tested 30-bit scale) with 100\% verification accuracy across all accepted candidates. The on-chain oracle architecture enables composable integration with ZK rollups, MPC protocols, trusted setup ceremonies, and deterministic key derivation systems.
 
 EchoPrime is available as a public oracle on Ethereum-compatible chains. Documentation, contract addresses, and API access are provided at \texttt{www.echoprime.xyz}.
+
+\begin{thebibliography}{10}
+
+\bibitem{hardy1923}
+G.~H. Hardy and J.~E. Littlewood,
+``Some problems of `Partitio Numerorum'; III: On the expression of a number as a sum of primes,''
+\textit{Acta Mathematica}, vol.~44, pp.~1--70, 1923.
+
+\bibitem{bateman1962}
+P.~T. Bateman and R.~A. Horn,
+``A heuristic asymptotic formula concerning the distribution of prime numbers,''
+\textit{Mathematics of Computation}, vol.~16, no.~79, pp.~363--367, 1962.
+
+\bibitem{lucas1878}
+\'{E}.~Lucas,
+``Th\'{e}orie des fonctions num\'{e}riques simplement p\'{e}riodiques,''
+\textit{American Journal of Mathematics}, vol.~1, no.~2, pp.~184--196, 1878.
+
+\bibitem{miller1976}
+G.~L. Miller,
+``Riemann's hypothesis and tests for primality,''
+\textit{Journal of Computer and System Sciences}, vol.~13, no.~3, pp.~300--317, 1976.
+
+\bibitem{rabin1980}
+M.~O. Rabin,
+``Probabilistic algorithm for testing primality,''
+\textit{Journal of Number Theory}, vol.~12, no.~1, pp.~128--138, 1980.
+
+\bibitem{diffie1976}
+W.~Diffie and M.~E. Hellman,
+``New directions in cryptography,''
+\textit{IEEE Transactions on Information Theory}, vol.~22, no.~6, pp.~644--654, 1976.
+
+\bibitem{rivest1978}
+R.~L. Rivest, A.~Shamir, and L.~Adleman,
+``A method for obtaining digital signatures and public-key cryptosystems,''
+\textit{Communications of the ACM}, vol.~21, no.~2, pp.~120--126, 1978.
+
+\bibitem{bensasson2014}
+E.~Ben-Sasson, A.~Chiesa, E.~Tromer, and M.~Virza,
+``Succinct non-interactive zero knowledge for a von Neumann architecture,''
+in \textit{Proceedings of the 23rd USENIX Security Symposium}, pp.~781--796, 2014.
+
+\bibitem{gennaro2003}
+R.~Gennaro, S.~Jarecki, H.~Krawczyk, and T.~Rabin,
+``Secure distributed key generation for discrete-log based cryptosystems,''
+\textit{Journal of Cryptology}, vol.~20, no.~1, pp.~51--83, 2007.
+(Preliminary version in \textit{Eurocrypt 1999}.)
+
+\bibitem{granville1995}
+A.~Granville,
+``Harald Cram\'{e}r and the distribution of prime numbers,''
+\textit{Scandinavian Actuarial Journal}, vol.~1995, no.~1, pp.~12--28, 1995.
+
+\end{thebibliography}
 
 \end{document}
