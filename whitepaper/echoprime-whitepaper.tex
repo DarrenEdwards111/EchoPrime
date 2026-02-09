@@ -48,7 +48,7 @@ The EchoPrime estimator is a closed-form function that maps a natural number ind
 
 \subsection{Asymptotic Context}
 
-The prime counting function satisfies $\pi(x) \sim x / \ln x$, and the density of safe primes follows $\pi_{\text{safe}}(x) \sim C \cdot x / \ln^2 x$, where $C$ is the Hardy--Littlewood twin prime-like constant for safe primes \cite{hardy1923}. The quadratic logarithmic denominator reflects the requirement that both $p$ and $q = (p-1)/2$ must be prime.
+The prime counting function satisfies $\pi(x) \sim x / \ln x$ \cite{granville1995}, and the density of safe primes follows $\pi_{\text{safe}}(x) \sim C \cdot x / \ln^2 x$, where $C$ is the Hardy--Littlewood twin prime-like constant for safe primes \cite{hardy1923}. The quadratic logarithmic denominator reflects the requirement that both $p$ and $q = (p-1)/2$ must be prime.
 
 \subsection{Projection Formula}
 
@@ -299,6 +299,26 @@ EchoPrime is available as a public oracle on Ethereum-compatible chains. Documen
 
 \begin{thebibliography}{10}
 
+\bibitem{bensasson2014}
+E.~Ben-Sasson, A.~Chiesa, E.~Tromer, and M.~Virza,
+``Succinct non-interactive zero knowledge for a von Neumann architecture,''
+in \textit{Proceedings of the 23rd USENIX Security Symposium}, pp.~781--796, 2014.
+
+\bibitem{gennaro2003}
+R.~Gennaro, S.~Jarecki, H.~Krawczyk, and T.~Rabin,
+``Secure distributed key generation for discrete-log based cryptosystems,''
+\textit{Journal of Cryptology}, vol.~20, no.~1, pp.~51--83, 2007.
+
+\bibitem{diffie1976}
+W.~Diffie and M.~E. Hellman,
+``New directions in cryptography,''
+\textit{IEEE Transactions on Information Theory}, vol.~22, no.~6, pp.~644--654, 1976.
+
+\bibitem{rivest1978}
+R.~L. Rivest, A.~Shamir, and L.~Adleman,
+``A method for obtaining digital signatures and public-key cryptosystems,''
+\textit{Communications of the ACM}, vol.~21, no.~2, pp.~120--126, 1978.
+
 \bibitem{hardy1923}
 G.~H. Hardy and J.~E. Littlewood,
 ``Some problems of `Partitio Numerorum'; III: On the expression of a number as a sum of primes,''
@@ -323,27 +343,6 @@ G.~L. Miller,
 M.~O. Rabin,
 ``Probabilistic algorithm for testing primality,''
 \textit{Journal of Number Theory}, vol.~12, no.~1, pp.~128--138, 1980.
-
-\bibitem{diffie1976}
-W.~Diffie and M.~E. Hellman,
-``New directions in cryptography,''
-\textit{IEEE Transactions on Information Theory}, vol.~22, no.~6, pp.~644--654, 1976.
-
-\bibitem{rivest1978}
-R.~L. Rivest, A.~Shamir, and L.~Adleman,
-``A method for obtaining digital signatures and public-key cryptosystems,''
-\textit{Communications of the ACM}, vol.~21, no.~2, pp.~120--126, 1978.
-
-\bibitem{bensasson2014}
-E.~Ben-Sasson, A.~Chiesa, E.~Tromer, and M.~Virza,
-``Succinct non-interactive zero knowledge for a von Neumann architecture,''
-in \textit{Proceedings of the 23rd USENIX Security Symposium}, pp.~781--796, 2014.
-
-\bibitem{gennaro2003}
-R.~Gennaro, S.~Jarecki, H.~Krawczyk, and T.~Rabin,
-``Secure distributed key generation for discrete-log based cryptosystems,''
-\textit{Journal of Cryptology}, vol.~20, no.~1, pp.~51--83, 2007.
-(Preliminary version in \textit{Eurocrypt 1999}.)
 
 \bibitem{granville1995}
 A.~Granville,
