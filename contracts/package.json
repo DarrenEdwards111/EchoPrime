@@ -1,0 +1,19 @@
+{
+  "name": "echoprime-contracts",
+  "version": "0.1.0",
+  "description": "EchoPrime on-chain oracle — a public registry for verified safe prime submissions",
+  "license": "Apache-2.0",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:sepolia": "hardhat run scripts/deploy.js --network sepolia",
+    "submit:local": "hardhat run scripts/submit-prime.js --network localhost",
+    "submit:sepolia": "hardhat run scripts/submit-prime.js --network sepolia"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "dotenv": "^16.4.7",
+    "hardhat": "^2.22.0"
+  }
+}
