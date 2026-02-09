@@ -3,6 +3,7 @@
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://www.apache.org/licenses/LICENSE-2.0)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Version](https://img.shields.io/badge/version-1.0.0-green.svg)](https://github.com/DarrenEdwards111/echoprime)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.1852957.svg)](https://doi.org/10.5281/zenodo.1852957)
 
 **Deterministic safe prime oracle and cryptographic primitive.**
 
@@ -199,7 +200,21 @@ Mikoshi's mission is to make sophisticated financial and cryptographic tools acc
 
 📧 **Contact:** mikoshiuk@gmail.com
 🌐 **Website:** [mikoshi.co.uk](https://mikoshi.co.uk)
-🔬 **EchoPrime Labs:** [echoprime.xyz](https://echoprime.xyz)
+🔬 **EchoPrime:** [echoprime.xyz](https://echoprime.xyz)
+📄 **Paper:** [Edwards, D. (2026). Zenodo. DOI: 10.5281/zenodo.1852957](https://doi.org/10.5281/zenodo.1852957)
+
+## Citation
+
+```bibtex
+@article{edwards2026echoprime,
+  title   = {EchoPrime: A Verifiable Oracle for Deterministic Safe Prime Generation with On-Chain Audit Trails},
+  author  = {Edwards, Darren J.},
+  year    = {2026},
+  doi     = {10.5281/zenodo.1852957},
+  url     = {https://doi.org/10.5281/zenodo.1852957},
+  publisher = {Zenodo}
+}
+```
 
 ## License
 
