@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="logo.jpg" alt="EchoPrime" width="200">
+</p>
+
 # EchoPrime 🔐
 
 [![PyPI](https://img.shields.io/pypi/v/echoprime.svg)](https://pypi.org/project/echoprime/)
