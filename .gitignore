@@ -5,3 +5,11 @@ dist/
 build/
 .venv/
 dist/
+
+.npmrc
+secrets/
+.keys/
+.env
+*.key
+*.pem
+*.der
